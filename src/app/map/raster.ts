@@ -3,6 +3,7 @@ import Feature from 'ol/Feature';
 import VectorSource from 'ol/source/Vector';
 import Map from 'ol/Map';
 import VectorLayer from 'ol/layer/Vector';
+import {SquareManager} from './square-manager';
 
 export class Raster {
   private maxY = SquareManager.maxY;
