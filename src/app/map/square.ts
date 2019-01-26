@@ -1,7 +1,6 @@
-import {SquareManager} from './square-manager';
 import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
-import Geometry from 'ol/geom/Geometry';
+import {SquareDefinitions} from './square-definitions';
 
 export class Square {
   constructor(public xLeft: number, public yBottom: number) {
@@ -9,18 +8,18 @@ export class Square {
   }
 
   public get xRight(): number {
-    return this.xLeft + SquareManager.squareSize;
+    return this.xLeft + SquareDefinitions.squareSize;
   }
 
   public get yTop(): number {
-    return this.yBottom + SquareManager.squareSize;
+    return this.yBottom + SquareDefinitions.squareSize;
   }
 
   public get olFeature(): Feature {
-    return new Feature(this.olGeometry);
+    return new Feature(this.olPolygon);
   }
 
-  public get olGeometry(): Geometry {
+  public get olPolygon(): Polygon {
     const coordinates = [[
       [this.xLeft, this.yBottom],
       [this.xRight, this.yBottom],
@@ -29,5 +28,20 @@ export class Square {
       [this.xLeft, this.yBottom]
     ]];
     return new Polygon(coordinates);
+  }
+
+  public isWithin(polygon: Polygon): boolean {
+    const definingCoordinates = [
+      [this.xLeft, this.yBottom],
+      [this.xRight, this.yBottom],
+      [this.xRight, this.yTop],
+      [this.xLeft, this.yTop]
+    ];
+    for (const coordinate of definingCoordinates) {
+      if (!polygon.intersectsCoordinate(coordinate)) {
+        return false;
+      }
+    }
+    return true;
   }
 }

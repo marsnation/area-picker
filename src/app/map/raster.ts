@@ -3,13 +3,13 @@ import Feature from 'ol/Feature';
 import VectorSource from 'ol/source/Vector';
 import Map from 'ol/Map';
 import VectorLayer from 'ol/layer/Vector';
-import {SquareManager} from './square-manager';
+import {SquareDefinitions} from './square-definitions';
 
 export class Raster {
-  private maxY = SquareManager.maxY;
-  private minY = SquareManager.minY;
-  private minX = SquareManager.minX;
-  private maxX = SquareManager.maxX;
+  private maxY = SquareDefinitions.maxY;
+  private minY = SquareDefinitions.minY;
+  private minX = SquareDefinitions.minX;
+  private maxX = SquareDefinitions.maxX;
 
   private readonly source: VectorSource;
   private readonly layer: VectorLayer;
@@ -64,13 +64,13 @@ export class Raster {
   }
 
   private drawVerticalLines() {
-    for (let i = this.minX; i < this.maxX; i = i + SquareManager.squareSize) {
+    for (let i = this.minX; i < this.maxX; i = i + SquareDefinitions.squareSize) {
       this.drawLine([i, this.minY], [i, this.maxY]);
     }
   }
 
   private drawHorizontalLines() {
-    for (let i = this.minY; i < this.maxY; i = i + SquareManager.squareSize) {
+    for (let i = this.minY; i < this.maxY; i = i + SquareDefinitions.squareSize) {
       this.drawLine([this.minX, i], [this.maxX, i]);
     }
   }
