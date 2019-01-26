@@ -6,6 +6,7 @@ import XYZ from 'ol/source/XYZ';
 import ScaleLine from 'ol/control/ScaleLine';
 import {Raster} from './raster';
 import {PolygonDraw} from './polygon-draw';
+import {SelectedAreas} from './selected-areas';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MapComponent implements OnInit {
 
   private raster: Raster;
   private polygonDraw: PolygonDraw;
+  private selectedAreas: SelectedAreas;
   constructor() { }
 
   ngOnInit() {
@@ -45,9 +47,14 @@ export class MapComponent implements OnInit {
 
     this.raster = new Raster(this.map);
     this.polygonDraw = new PolygonDraw((this.map));
+    this.selectedAreas = new SelectedAreas(this.map);
+    this.polygonDraw.onPolygonDrawn.subscribe(feature => {
+      this.selectedAreas.select(feature);
+    });
+
   }
 
-  public enableSelection(){
+  public enableSelection() {
     this.polygonDraw.enabled = true;
   }
 }

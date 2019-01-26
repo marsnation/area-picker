@@ -5,10 +5,11 @@ import Map from 'ol/Map';
 import VectorLayer from 'ol/layer/Vector';
 
 export class Raster {
-  private maxY = 20000000;
-  private minY = -20000000;
-  private minX = -90000000;
-  private maxX = 90000000;
+  private maxY = SquareManager.maxY;
+  private minY = SquareManager.minY;
+  private minX = SquareManager.minX;
+  private maxX = SquareManager.maxX;
+
   private readonly source: VectorSource;
   private readonly layer: VectorLayer;
 
@@ -62,15 +63,13 @@ export class Raster {
   }
 
   private drawVerticalLines() {
-    const stepSize = 100000;
-    for (let i = this.minX; i < this.maxX; i = i + stepSize) {
+    for (let i = this.minX; i < this.maxX; i = i + SquareManager.squareSize) {
       this.drawLine([i, this.minY], [i, this.maxY]);
     }
   }
 
   private drawHorizontalLines() {
-    const stepSize = 100000;
-    for (let i = this.minY; i < this.maxY; i = i + stepSize) {
+    for (let i = this.minY; i < this.maxY; i = i + SquareManager.squareSize) {
       this.drawLine([this.minX, i], [this.maxX, i]);
     }
   }
