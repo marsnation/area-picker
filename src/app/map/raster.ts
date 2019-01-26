@@ -30,7 +30,7 @@ export class Raster {
   }
 
   private onRenderComplete(event) {
-    this.isVisible = this.currentZoomLevel > 4;
+    this.isVisible = this.currentZoomLevel > 3;
   }
 
   public get isVisible(): boolean {
