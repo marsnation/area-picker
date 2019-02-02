@@ -1,8 +1,9 @@
-<div class="box" *ngIf="lotCount > 0">
+<div class="box" >
   <h2>Buy land</h2>
   <p>Lot count: {{lotCount}}</p>
   <p>Total price: {{totalPrice}} ETH</p>
   <p>Average price: {{averagePrice}} ETH</p>
-  <button (click)="onBuyClick()">BUY</button>
+  <button (click)="onBuyClick()" type="button" class="btn btn-primary">BUY</button>
+
 </div>
 
