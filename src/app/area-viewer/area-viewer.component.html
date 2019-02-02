@@ -1,5 +1,16 @@
-<ul>
-  <li *ngFor="let square of selectedAreas;">
-    {{square.id}}
-  </li>
-</ul>
+<div class="row" *ngFor="let square of selectedAreas;">
+  <div col-6>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">ID: {{square.id}}</span>
+      </div>
+      <input disabled type="text" class="form-control" aria-describedby="button-addon2">
+      <!--<div class="input-group-append">-->
+        <!--<button class="btn btn-outline-secondary" type="button" id="button-addon2">Update Value</button>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>
+
+
+
