@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col-9">
-      <app-map (onAreasSelected)="buyer.selectedAreas = $event"></app-map>
+      <app-map (onAreasSelected)="buyer.selectedAreas = $event; viewer.selectedAreas = $event;"></app-map>
       <!--<p>Raster is only available on lower zoom levels.</p>-->
       <!--<p>Click on the button above to select an area.</p>-->
     </div>
@@ -28,3 +28,5 @@
     </div>
   </div>
 </div>
+
+<app-area-viewer #viewer></app-area-viewer>
