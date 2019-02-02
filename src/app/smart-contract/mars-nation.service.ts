@@ -55,9 +55,10 @@ export class MarsNationService {
 
   public getOwnedSquares(): Array<Square> {
     return [];
+
     // const ret = [];
     // for (const square of this.squareManager.allSquares) {
-    //   if (square.id < 10) {
+    //   if (square.id < 1000) {
     //     ret.push(square);
     //   }
     // }
