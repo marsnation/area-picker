@@ -8,6 +8,8 @@ import {Raster} from './raster';
 import {PolygonDraw} from './polygon-draw';
 import {SelectedAreas} from './selected-areas';
 import {Square} from './square';
+import {MarsNationService} from '../smart-contract/mars-nation.service';
+import {OwnedAreas} from './owned-areas';
 
 
 @Component({
@@ -24,16 +26,18 @@ export class MapComponent implements OnInit {
   private raster: Raster;
   private polygonDraw: PolygonDraw;
   private selectedAreas: SelectedAreas;
+  private ownedAreas: OwnedAreas;
 
 
   @Output()
   public onAreasSelected = new EventEmitter<Array<Square>>();
 
-  constructor() {
+  constructor(private marsNation: MarsNationService) {
   }
 
   ngOnInit() {
     this.initMap();
+    this.displayAlreadyOwnerFeatures();
   }
 
   private initMap() {
@@ -56,12 +60,17 @@ export class MapComponent implements OnInit {
 
     this.raster = new Raster(this.map);
     this.polygonDraw = new PolygonDraw((this.map));
+    this.ownedAreas = new OwnedAreas(this.map);
     this.selectedAreas = new SelectedAreas(this.map);
     this.polygonDraw.onPolygonDrawn.subscribe(feature => {
       const squares = this.selectedAreas.select(feature);
       this.onAreasSelected.emit(squares);
     });
+  }
 
+  private displayAlreadyOwnerFeatures() {
+    const squares = this.marsNation.getOwnedSquares();
+    this.ownedAreas.select(squares);
   }
 
   public enableSelection() {

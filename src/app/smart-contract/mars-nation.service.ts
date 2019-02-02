@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import Web3 from 'web3';
+import {Square} from '../map/square';
+import {SquareManager} from '../map/square-manager';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarsNationService {
+  private squareManager = new SquareManager();
   private web3: Web3;
   private web3Provider;
   private contractAddress = '0x92Ed993F5489af9306978e0211A439A40D496e45';
@@ -106,8 +109,16 @@ export class MarsNationService {
     this.contract.adopt(1, transactionObject, (error, result) => {
       console.log(error, result);
     });
+  }
 
-
+  public getOwnedSquares(): Array<Square> {
+    const ret = [];
+    for (const square of this.squareManager.allSquares) {
+      if (square.id < 10) {
+        ret.push(square);
+      }
+    }
+    return ret;
   }
 
 
