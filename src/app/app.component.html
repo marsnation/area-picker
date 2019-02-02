@@ -1,5 +1,6 @@
 <h1>Marsnation area picker</h1>
-<app-map></app-map>
+<app-area-buyer #buyer></app-area-buyer>
+<app-map (onAreasSelected)="buyer.selectedAreas = $event"></app-map>
 <p>Raster is only available on lower zoom levels.</p>
 <p>Click on the button above to select an area.</p>
 

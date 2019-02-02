@@ -1,0 +1,8 @@
+<div class="box" *ngIf="lotCount > 0">
+  <h2>Buy land</h2>
+  <p>Lot count: {{lotCount}}</p>
+  <p>Total price: {{totalPrice}} ETH</p>
+  <p>Average price: {{averagePrice}} ETH</p>
+  <button (click)="onBuyClick()">BUY</button>
+</div>
+

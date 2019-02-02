@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import Map from 'ol/Map.js';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
@@ -7,6 +7,7 @@ import ScaleLine from 'ol/control/ScaleLine';
 import {Raster} from './raster';
 import {PolygonDraw} from './polygon-draw';
 import {SelectedAreas} from './selected-areas';
+import {Square} from './square';
 
 
 @Component({
@@ -21,7 +22,13 @@ export class MapComponent implements OnInit {
   private raster: Raster;
   private polygonDraw: PolygonDraw;
   private selectedAreas: SelectedAreas;
-  constructor() { }
+
+
+  @Output()
+  public onAreasSelected = new EventEmitter<Array<Square>>();
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.initMap();
@@ -49,7 +56,8 @@ export class MapComponent implements OnInit {
     this.polygonDraw = new PolygonDraw((this.map));
     this.selectedAreas = new SelectedAreas(this.map);
     this.polygonDraw.onPolygonDrawn.subscribe(feature => {
-      this.selectedAreas.select(feature);
+      const squares = this.selectedAreas.select(feature);
+      this.onAreasSelected.emit(squares);
     });
 
   }

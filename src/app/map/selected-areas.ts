@@ -33,21 +33,14 @@ export class SelectedAreas {
     this.map.addLayer(this.layer);
   }
 
-  public select(feature: Feature) {
+  public select(feature: Feature): Array<Square> {
     this.source.clear();
     const featuresWithin = this.getFeaturesWithin(feature.getGeometry());
     this.source.addFeatures(featuresWithin);
 
-    const squaresWithin = this.getSquaresWithin(feature.getGeometry());
-    this.logSquares(squaresWithin);
+    return this.getSquaresWithin(feature.getGeometry());
   }
 
-  private logSquares(squares: Array<Square>) {
-    console.log('Selected squareas');
-    for (const square of squares) {
-      console.log(square.id);
-    }
-  }
 
   private getFeaturesWithin(geometry: Geometry): Array<Feature> {
     const result = [];
