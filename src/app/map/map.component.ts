@@ -18,6 +18,8 @@ import {Square} from './square';
 export class MapComponent implements OnInit {
   private map: Map;
   private tilesUrl = 'https://{a-c}.tiles.mapbox.com/v3/herwig.map-siz5m7we/{z}/{x}/{y}.png';
+  // private tilesUrl = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/mola-color/{z}/{x}/{y}.png';
+  // private tilesUrl = 'http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png';
 
   private raster: Raster;
   private polygonDraw: PolygonDraw;

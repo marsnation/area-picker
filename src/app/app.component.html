@@ -1,16 +1,11 @@
-
-
-
 <router-outlet></router-outlet>
 
 <div class="container">
-
   <div class="row my-5">
     <div class="col-12 align-content-center">
       <h1>Mars Nation Harberger Marketplace</h1>
     </div>
   </div>
-
   <div class="row">
     <div class="col-9">
       <app-map (onAreasSelected)="buyer.selectedAreas = $event; viewer.selectedAreas = $event;"></app-map>
@@ -21,10 +16,15 @@
       <app-area-buyer #buyer></app-area-buyer>
     </div>
     </div>
-
   <div class="row my-5">
     <div class="col-12 align-content-center">
       <h1>My land</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 align-content-center">
+      <h2>Land list</h2>
     </div>
   </div>
 </div>
