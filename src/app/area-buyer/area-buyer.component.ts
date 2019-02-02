@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Square} from '../map/square';
+import {MarsNationService} from '../smart-contract/mars-nation.service';
 
 @Component({
   selector: 'app-area-buyer',
@@ -14,7 +15,7 @@ export class AreaBuyerComponent implements OnInit {
     this._selectedAreas = squares;
   }
 
-  constructor() { }
+  constructor(private marsNation: MarsNationService) { }
 
   ngOnInit() {
   }
@@ -33,5 +34,6 @@ export class AreaBuyerComponent implements OnInit {
 
   public onBuyClick() {
     console.log('buy');
+    this.marsNation.call();
   }
 }
