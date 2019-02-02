@@ -15,10 +15,10 @@ export class SelectedAreas {
 
   private style = new Style({
     fill: new Fill({
-      color: 'rgba(219, 0, 11, 0.2)'
+      color: 'rgba(253, 123, 78, 0.3)'
     }),
     stroke: new Stroke({
-      color: '#db000b',
+      color: '#FD7B4E',
       width: 2
     })
   });
