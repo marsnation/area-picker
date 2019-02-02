@@ -35,15 +35,35 @@ export class SelectedAreas {
 
   public select(feature: Feature) {
     this.source.clear();
+    const featuresWithin = this.getFeaturesWithin(feature.getGeometry());
+    this.source.addFeatures(featuresWithin);
+
     const squaresWithin = this.getSquaresWithin(feature.getGeometry());
-    this.source.addFeatures(squaresWithin);
+    this.logSquares(squaresWithin);
+  }
+
+  private logSquares(squares: Array<Square>) {
+    console.log('Selected squareas');
+    for (const square of squares) {
+      console.log(square.id);
+    }
+  }
+
+  private getFeaturesWithin(geometry: Geometry): Array<Feature> {
+    const result = [];
+    for (const square of this.squareManager.allSquares) {
+      if (square.isWithin(geometry)) {
+        result.push(square.olFeature);
+      }
+    }
+    return result;
   }
 
   private getSquaresWithin(geometry: Geometry): Array<Feature> {
     const result = [];
     for (const square of this.squareManager.allSquares) {
       if (square.isWithin(geometry)) {
-        result.push(square.olFeature);
+        result.push(square);
       }
     }
     return result;

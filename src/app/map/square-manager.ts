@@ -11,10 +11,12 @@ export class SquareManager {
 
   private generateSquares(): Array<Square> {
     const result = [];
+    let idCounter = 0;
     for (let xStart = SquareDefinitions.minX; xStart < SquareDefinitions.maxX; xStart += SquareDefinitions.squareSize) {
       for (let yStart = SquareDefinitions.minY; yStart < SquareDefinitions.maxY; yStart += SquareDefinitions.squareSize) {
-        const square = new Square(xStart, yStart);
+        const square = new Square(xStart, yStart, idCounter);
         result.push(square);
+        idCounter += 1;
       }
     }
     return result;

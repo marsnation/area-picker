@@ -3,7 +3,7 @@ import Polygon from 'ol/geom/Polygon';
 import {SquareDefinitions} from './square-definitions';
 
 export class Square {
-  constructor(public xLeft: number, public yBottom: number) {
+  constructor(public xLeft: number, public yBottom: number, public id: number) {
 
   }
 
