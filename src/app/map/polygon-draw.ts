@@ -15,16 +15,16 @@ export class PolygonDraw {
 
   private style = new Style({
     fill: new Fill({
-      color: 'rgba(255, 255, 255, 0.2)'
+      color: 'rgba(81, 255, 207, 0.05)'
     }),
     stroke: new Stroke({
-      color: '#ffcc33',
+      color: '#51FFCF',
       width: 2
     }),
     image: new CircleStyle({
       radius: 7,
       fill: new Fill({
-        color: '#ffcc33'
+        color: '#51FFCF'
       })
     })
   });

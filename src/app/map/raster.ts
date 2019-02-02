@@ -4,6 +4,7 @@ import VectorSource from 'ol/source/Vector';
 import Map from 'ol/Map';
 import VectorLayer from 'ol/layer/Vector';
 import {SquareDefinitions} from './square-definitions';
+import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 
 export class Raster {
   private maxY = SquareDefinitions.maxY;
@@ -16,11 +17,20 @@ export class Raster {
 
   private visible = false;
 
+  private style = new Style({
+    stroke: new Stroke({
+      color: 'rgba(255, 255, 255, 0.3)',
+      width: 1
+    })
+  });
+
   constructor(public map: Map) {
     this.source = new VectorSource({wrapX: false});
 
     this.layer = new VectorLayer({
-      source: this.source
+      source: this.source,
+      style: this.style
+
     });
     this.map.addLayer(this.layer);
 
