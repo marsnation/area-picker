@@ -42,13 +42,13 @@ export class MarsNationService {
   }
 
   public call() {
-    console.log('call adopt', this.contract, this.accountAddress);
+    console.log('call buy', this.contract, this.accountAddress);
     const transactionObject = {
       from: this.accountAddress,
       gas: 200000,
       gasPrice: 2000000000
     };
-    this.contract.adopt(1, transactionObject, (error, result) => {
+    this.contract.buy(1, transactionObject, (error, result) => {
       console.log(error, result);
     });
   }
