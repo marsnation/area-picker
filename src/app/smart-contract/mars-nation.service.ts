@@ -12,7 +12,7 @@ export class MarsNationService {
   private squareManager = new SquareManager();
   private web3: Web3;
   private web3Provider;
-  private contractAddress = '0x6e3cE9aD6088bDc1367dDFdE23A54b8418aB41F3';
+  private contractAddress = '0xe5969d6592879b8ed89e77852595d434c44220ae';
   private contract;
   private accountAddress: string;
 
